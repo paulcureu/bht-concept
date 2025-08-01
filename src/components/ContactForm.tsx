@@ -54,6 +54,16 @@ const ContactForm = () => {
         />
       </div>
       <div className="mb-6">
+        <label htmlFor="phone" className="block text-yellow-400 font-bold mb-2">Telefon</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          required
+          className="w-full bg-gray-700 border border-gray-600 rounded py-2 px-3 text-gray-100 focus:outline-none focus:border-yellow-500"
+        />
+      </div>
+      <div className="mb-6">
         <label htmlFor="message" className="block text-yellow-400 font-bold mb-2">Mesaj</label>
         <textarea
           id="message"
