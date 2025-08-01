@@ -1,28 +1,33 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { getPostsByTag, getAllTags } from '@/lib/posts';
+import { slugify } from '@/lib/utils';
 import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
   const tags = await getAllTags();
   return tags.map(tag => ({
-    tag: encodeURIComponent(tag),
+    tag: slugify(tag), // Generează pagini pe baza slug-ului
   }));
 }
 
 const TagPage = async ({ params: paramsPromise }: { params: Promise<{ tag: string }> }) => {
-  const { tag: encodedTag } = await paramsPromise;
-  const tag = decodeURIComponent(encodedTag);
-  const posts = await getPostsByTag(tag);
+  const { tag: slug } = await paramsPromise;
+  
+  const allTags = await getAllTags();
+  // Găsește tag-ul original care corespunde slug-ului
+  const originalTag = allTags.find(t => slugify(t) === slug);
 
-  if (!posts || posts.length === 0) {
+  if (!originalTag) {
     notFound();
   }
+
+  const posts = await getPostsByTag(originalTag);
 
   return (
     <div className="max-w-5xl mx-auto">
       <h1 className="text-4xl font-bold text-center text-yellow-400">
-        Articole în categoria: <span className="text-white">{tag}</span>
+        Articole în categoria: <span className="text-white">{originalTag}</span>
       </h1>
       
       <section className="mt-12 grid gap-8 md:grid-cols-2">
@@ -40,7 +45,7 @@ const TagPage = async ({ params: paramsPromise }: { params: Promise<{ tag: strin
             <div className="p-6 flex-grow flex flex-col">
                <div className="mb-4">
                 {tags.map(t => (
-                  <Link key={t} href={`/blog/tag/${encodeURIComponent(t)}`} className="inline-block bg-gray-700 text-yellow-400 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full hover:bg-gray-600">
+                  <Link key={t} href={`/blog/tag/${slugify(t)}`} className="inline-block bg-gray-700 text-yellow-400 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full hover:bg-gray-600">
                     {t}
                   </Link>
                 ))}

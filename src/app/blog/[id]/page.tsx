@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { getPostData, getAllPostIds } from '@/lib/posts';
+import { slugify } from '@/lib/utils';
 import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
@@ -42,7 +43,7 @@ const PostPage = async ({ params: paramsPromise }: { params: Promise<{ id: strin
         <h3 className="text-xl font-bold text-yellow-400 mb-4">Categorii</h3>
         <div className="flex flex-wrap gap-2">
           {postData.tags.map(tag => (
-            <Link key={tag} href={`/blog/tag/${encodeURIComponent(tag)}`} className="inline-block bg-gray-700 text-yellow-400 text-sm font-semibold px-3 py-1 rounded-full hover:bg-gray-600">
+            <Link key={tag} href={`/blog/tag/${slugify(tag)}`} className="inline-block bg-gray-700 text-yellow-400 text-sm font-semibold px-3 py-1 rounded-full hover:bg-gray-600">
               {tag}
             </Link>
           ))}
