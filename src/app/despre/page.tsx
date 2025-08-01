@@ -26,19 +26,21 @@ const ExperienceIcon = () => (
 
 const DesprePage = () => {
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-6xl mx-auto px-4">
       {/* Header Section */}
-      <section className="text-center mb-16">
-        <h1 className="text-5xl font-bold text-yellow-400 mb-6">Despre B.H.T. SMART CONCEPT</h1>
-        <p className="text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto">
+      <section className="text-center mb-12 sm:mb-16">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-yellow-400 mb-4 sm:mb-6">
+          Despre B.H.T. SMART CONCEPT
+        </h1>
+        <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto">
           Suntem o companie românească dedicată inovației în domeniul soluțiilor electrice, 
           specializată în sisteme fotovoltaice, case inteligente și instalații electrice de înaltă calitate.
         </p>
       </section>
 
       {/* Povestea Noastră */}
-      <section className="bg-gray-800 p-8 rounded-lg mb-16">
-        <h2 className="text-4xl font-bold text-yellow-400 text-center mb-8">Povestea Noastră</h2>
+      <section className="bg-gray-800 p-6 sm:p-8 rounded-lg mb-12 sm:mb-16">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-yellow-400 text-center mb-6 sm:mb-8">Povestea Noastră</h2>
         <div className="prose prose-invert max-w-none prose-lg">
           <p className="text-gray-300 leading-relaxed mb-6">
             B.H.T. SMART CONCEPT s-a născut din pasiunea pentru tehnologie și din dorința de a contribui 
@@ -63,45 +65,45 @@ const DesprePage = () => {
       </section>
 
       {/* Valorile Noastre - Grid Section */}
-      <section className="mb-16">
-        <h2 className="text-4xl font-bold text-yellow-400 text-center mb-12">Valorile Care Ne Definesc</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <section className="mb-12 sm:mb-16">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-yellow-400 text-center mb-8 sm:mb-12">Valorile Care Ne Definesc</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           
           {/* Experiența */}
-          <div className="bg-gray-800 p-8 rounded-lg text-center hover:shadow-yellow-400/20 transition-shadow duration-300">
+          <div className="bg-gray-800 p-6 sm:p-8 rounded-lg text-center hover:shadow-yellow-400/20 transition-shadow duration-300">
             <ExperienceIcon />
-            <h3 className="text-2xl font-bold text-yellow-400 mt-6 mb-4">Experiență</h3>
-            <p className="text-gray-300 leading-relaxed">
+            <h3 className="text-xl sm:text-2xl font-bold text-yellow-400 mt-4 sm:mt-6 mb-3 sm:mb-4">Experiență</h3>
+            <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
               Ani de experiență în domeniul instalațiilor electrice și al tehnologiilor verzi ne-au 
               oferit expertiza necesară pentru a rezolva cele mai complexe provocări.
             </p>
           </div>
 
           {/* Echipa */}
-          <div className="bg-gray-800 p-8 rounded-lg text-center hover:shadow-yellow-400/20 transition-shadow duration-300">
+          <div className="bg-gray-800 p-6 sm:p-8 rounded-lg text-center hover:shadow-yellow-400/20 transition-shadow duration-300">
             <TeamIcon />
-            <h3 className="text-2xl font-bold text-yellow-400 mt-6 mb-4">Echipa</h3>
-            <p className="text-gray-300 leading-relaxed">
+            <h3 className="text-xl sm:text-2xl font-bold text-yellow-400 mt-4 sm:mt-6 mb-3 sm:mb-4">Echipa</h3>
+            <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
               Echipa noastră de specialiști certificați combină cunoștințele tehnice cu pasiunea 
               pentru inovație, asigurând rezultate excepționale în fiecare proiect.
             </p>
           </div>
 
           {/* Misiunea */}
-          <div className="bg-gray-800 p-8 rounded-lg text-center hover:shadow-yellow-400/20 transition-shadow duration-300">
+          <div className="bg-gray-800 p-6 sm:p-8 rounded-lg text-center hover:shadow-yellow-400/20 transition-shadow duration-300">
             <MissionIcon />
-            <h3 className="text-2xl font-bold text-yellow-400 mt-6 mb-4">Misiunea</h3>
-            <p className="text-gray-300 leading-relaxed">
+            <h3 className="text-xl sm:text-2xl font-bold text-yellow-400 mt-4 sm:mt-6 mb-3 sm:mb-4">Misiunea</h3>
+            <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
               Să oferim soluții electrice și energetice inovatoare care îmbunătățesc calitatea vieții 
               clienților noștri, contribuind în același timp la protejarea mediului.
             </p>
           </div>
 
           {/* Viziunea */}
-          <div className="bg-gray-800 p-8 rounded-lg text-center hover:shadow-yellow-400/20 transition-shadow duration-300">
+          <div className="bg-gray-800 p-6 sm:p-8 rounded-lg text-center hover:shadow-yellow-400/20 transition-shadow duration-300">
             <VisionIcon />
-            <h3 className="text-2xl font-bold text-yellow-400 mt-6 mb-4">Viziunea</h3>
-            <p className="text-gray-300 leading-relaxed">
+            <h3 className="text-xl sm:text-2xl font-bold text-yellow-400 mt-4 sm:mt-6 mb-3 sm:mb-4">Viziunea</h3>
+            <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
               Să devenim liderul pieței românești în domeniul soluțiilor electrice inteligente și 
               sustenabile, setând noi standarde de calitate și inovație.
             </p>
@@ -110,43 +112,43 @@ const DesprePage = () => {
       </section>
 
       {/* De Ce Ne Alegeți */}
-      <section className="bg-gray-800 p-8 rounded-lg mb-16">
-        <h2 className="text-4xl font-bold text-yellow-400 text-center mb-8">De Ce Ne Alegeți Pe Noi?</h2>
-        <div className="grid md:grid-cols-2 gap-8">
+      <section className="bg-gray-800 p-6 sm:p-8 rounded-lg mb-12 sm:mb-16">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-yellow-400 text-center mb-6 sm:mb-8">De Ce Ne Alegeți Pe Noi?</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           <div>
-            <h3 className="text-2xl font-bold text-yellow-400 mb-4">🔧 Soluții Complete</h3>
-            <p className="text-gray-300 leading-relaxed mb-6">
+            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-yellow-400 mb-3 sm:mb-4">🔧 Soluții Complete</h3>
+            <p className="text-gray-300 leading-relaxed mb-4 sm:mb-6 text-sm sm:text-base">
               De la consultanță și proiectare până la instalare și mentenanță, oferim servicii complete 
               care acoperă toate aspectele proiectului dumneavoastră.
             </p>
 
-            <h3 className="text-2xl font-bold text-yellow-400 mb-4">⚡ Tehnologie Avansată</h3>
-            <p className="text-gray-300 leading-relaxed mb-6">
+            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-yellow-400 mb-3 sm:mb-4">⚡ Tehnologie Avansată</h3>
+            <p className="text-gray-300 leading-relaxed mb-4 sm:mb-6 text-sm sm:text-base">
               Utilizăm doar echipamente de ultimă generație de la producători recunoscuți mondial, 
               asigurând performanțe superioare și durabilitate în timp.
             </p>
 
-            <h3 className="text-2xl font-bold text-yellow-400 mb-4">🛡️ Garanție Extinsă</h3>
-            <p className="text-gray-300 leading-relaxed">
+            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-yellow-400 mb-3 sm:mb-4">🛡️ Garanție Extinsă</h3>
+            <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
               Oferim garanții extinse pentru toate serviciile și echipamentele instalate, 
               dându-vă încrederea că investiția dumneavoastră este protejată.
             </p>
           </div>
           <div>
-            <h3 className="text-2xl font-bold text-yellow-400 mb-4">🌱 Sustenabilitate</h3>
-            <p className="text-gray-300 leading-relaxed mb-6">
+            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-yellow-400 mb-3 sm:mb-4">🌱 Sustenabilitate</h3>
+            <p className="text-gray-300 leading-relaxed mb-4 sm:mb-6 text-sm sm:text-base">
               Fiecare soluție pe care o implementăm are ca scop reducerea amprenta de carbon 
               și promovarea unui stil de viață mai sustenabil.
             </p>
 
-            <h3 className="text-2xl font-bold text-yellow-400 mb-4">💡 Consultanță Personalizată</h3>
-            <p className="text-gray-300 leading-relaxed mb-6">
+            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-yellow-400 mb-3 sm:mb-4">💡 Consultanță Personalizată</h3>
+            <p className="text-gray-300 leading-relaxed mb-4 sm:mb-6 text-sm sm:text-base">
               Analizăm în detaliu nevoile dumneavoastră specifice și propunem soluții personalizate 
               care se potrivesc perfect bugetului și cerințelor tehnice.
             </p>
 
-            <h3 className="text-2xl font-bold text-yellow-400 mb-4">🏆 Rezultate Dovedite</h3>
-            <p className="text-gray-300 leading-relaxed">
+            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-yellow-400 mb-3 sm:mb-4">🏆 Rezultate Dovedite</h3>
+            <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
               Portofoliul nostru de proiecte finalizate cu succes și feedback-ul pozitiv 
               al clienților demonstrează calitatea serviciilor noastre.
             </p>
@@ -155,22 +157,22 @@ const DesprePage = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="text-center py-16 bg-gray-800 rounded-lg">
-        <h2 className="text-4xl font-bold text-white mb-6">Să Construim Împreună Viitorul</h2>
-        <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto mb-8">
+      <section className="text-center py-12 sm:py-16 bg-gray-800 rounded-lg">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6 px-4">Să Construim Împreună Viitorul</h2>
+        <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8 px-4">
           Indiferent dacă visați la o casă inteligentă, la independența energetică prin panouri fotovoltaice 
           sau la o instalație electrică modernă, suntem aici să vă transformăm visurile în realitate.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
           <a
             href="/contact"
-            className="inline-block bg-yellow-500 text-gray-900 font-bold py-4 px-8 rounded-lg hover:bg-yellow-400 transition-colors"
+            className="inline-block bg-yellow-500 text-gray-900 font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-lg hover:bg-yellow-400 transition-colors text-sm sm:text-base"
           >
             Contactați-ne Acum
           </a>
           <a
             href="/portofoliu"
-            className="inline-block bg-gray-700 text-yellow-400 font-bold py-4 px-8 rounded-lg hover:bg-gray-600 transition-colors"
+            className="inline-block bg-gray-700 text-yellow-400 font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-lg hover:bg-gray-600 transition-colors text-sm sm:text-base"
           >
             Vezi Proiectele Noastre
           </a>
