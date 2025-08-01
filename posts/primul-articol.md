@@ -2,6 +2,9 @@
 title: '5 Avantaje ale unei Case Inteligente'
 date: '2025-08-01'
 excerpt: 'Descoperiți cum tehnologia smart home vă poate îmbunătăți confortul, siguranța și eficiența energetică a locuinței.'
+image: '/images/smart-home-featured.svg'
+author: 'Echipa B.H.T.'
+tags: ['Smart Home', 'Confort', 'Tehnologie']
 ---
 
 O casă inteligentă nu mai este un concept SF, ci o realitate accesibilă care aduce numeroase beneficii. Iată cinci motive pentru care merită să investiți în soluții smart home:

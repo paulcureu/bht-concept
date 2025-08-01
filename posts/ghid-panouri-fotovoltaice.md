@@ -2,6 +2,9 @@
 title: 'Ghid pentru Instalarea Panourilor Fotovoltaice'
 date: '2025-07-25'
 excerpt: 'Pașii esențiali și lucrurile de care trebuie să țineți cont atunci când decideți să investiți în energie verde pentru casa dumneavoastră.'
+image: '/images/photovoltaic-featured.svg'
+author: 'Echipa B.H.T.'
+tags: ['Fotovoltaice', 'Energie Verde']
 ---
 
 Energia solară este o investiție excelentă pe termen lung. Dacă vă gândiți să instalați panouri fotovoltaice, iată un scurt ghid:

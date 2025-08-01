@@ -6,65 +6,69 @@ import html from 'remark-html';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
-export function getSortedPostsData() {
-  // Get file names under /posts
+// Define the type for a post
+export type PostData = {
+  id: string;
+  title: string;
+  date: string;
+  excerpt: string;
+  image: string;
+  author: string;
+  tags: string[];
+  contentHtml?: string;
+};
+
+export function getSortedPostsData(): Omit<PostData, 'contentHtml'>[] {
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map((fileName) => {
-    // Remove ".md" from file name to get id
     const id = fileName.replace(/\.md$/, '');
-
-    // Read markdown file as string
     const fullPath = path.join(postsDirectory, fileName);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
-
-    // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents);
 
-    // Combine the data with the id
     return {
       id,
-      ...(matterResult.data as { title: string; date: string; excerpt: string }),
+      ...(matterResult.data as { title: string; date: string; excerpt: string; image: string; author: string; tags: string[] }),
     };
   });
-  // Sort posts by date
-  return allPostsData.sort((a, b) => {
-    if (a.date < b.date) {
-      return 1;
-    } else {
-      return -1;
-    }
-  });
+
+  return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-export async function getPostData(id: string) {
+export async function getPostData(id: string): Promise<PostData> {
   const fullPath = path.join(postsDirectory, `${id}.md`);
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  
+  if (!fs.existsSync(fullPath)) {
+    throw new Error(`Post file not found for id: ${id} at path: ${fullPath}`);
+  }
 
-  // Use gray-matter to parse the post metadata section
+  const fileContents = fs.readFileSync(fullPath, 'utf8');
   const matterResult = matter(fileContents);
 
-  // Use remark to convert markdown into HTML string
-  const processedContent = await remark()
-    .use(html)
-    .process(matterResult.content);
+  const processedContent = await remark().use(html).process(matterResult.content);
   const contentHtml = processedContent.toString();
 
-  // Combine the data with the id and contentHtml
   return {
     id,
     contentHtml,
-    ...(matterResult.data as { title: string; date: string; excerpt: string }),
+    ...(matterResult.data as { title: string; date: string; excerpt: string; image: string; author: string; tags: string[] }),
   };
 }
 
 export function getAllPostIds() {
   const fileNames = fs.readdirSync(postsDirectory);
+  return fileNames.map((fileName) => ({
+    params: { id: fileName.replace(/\.md$/, '') },
+  }));
+}
 
-  return fileNames.map((fileName) => {
-    return {
-      params: {
-        id: fileName.replace(/\.md$/, ''),
-      },
-    };
-  });
+export function getAllTags() {
+  const allPosts = getSortedPostsData();
+  const allTags = allPosts.flatMap(post => post.tags);
+  return [...new Set(allTags)]; // Return unique tags
+}
+
+export function getPostsByTag(tag: string) {
+  const allPosts = getSortedPostsData();
+  return allPosts.filter(post => post.tags.includes(tag));
 }

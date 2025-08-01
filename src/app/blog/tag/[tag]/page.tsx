@@ -1,19 +1,38 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { getSortedPostsData } from '@/lib/posts';
+import { getPostsByTag, getAllTags } from '@/lib/posts';
+import { notFound } from 'next/navigation';
 
-const BlogPage = () => {
-  const allPosts = getSortedPostsData();
+type Props = {
+  params: {
+    tag: string;
+  };
+};
+
+// Generează pagini statice pentru fiecare tag la build time
+export function generateStaticParams() {
+  const tags = getAllTags();
+  return tags.map(tag => ({
+    tag: encodeURIComponent(tag),
+  }));
+}
+
+const TagPage = ({ params }: Props) => {
+  const tag = decodeURIComponent(params.tag);
+  const posts = getPostsByTag(tag);
+
+  if (!posts || posts.length === 0) {
+    notFound();
+  }
 
   return (
     <div className="max-w-5xl mx-auto">
-      <h1 className="text-4xl font-bold text-center text-yellow-400">Blog</h1>
-      <p className="mt-4 text-lg text-center text-gray-300">
-        Articole, ghiduri și noutăți din domeniul electric și al energiei verzi.
-      </p>
-
+      <h1 className="text-4xl font-bold text-center text-yellow-400">
+        Articole în categoria: <span className="text-white">{tag}</span>
+      </h1>
+      
       <section className="mt-12 grid gap-8 md:grid-cols-2">
-        {allPosts.map(({ id, title, date, excerpt, image, author, tags }) => (
+        {posts.map(({ id, title, date, excerpt, image, author, tags }) => (
           <article key={id} className="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col">
             <Link href={`/blog/${id}`} className="block">
               <Image
@@ -25,10 +44,10 @@ const BlogPage = () => {
               />
             </Link>
             <div className="p-6 flex-grow flex flex-col">
-              <div className="mb-4">
-                {tags.map(tag => (
-                  <Link key={tag} href={`/blog/tag/${encodeURIComponent(tag)}`} className="inline-block bg-gray-700 text-yellow-400 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full hover:bg-gray-600">
-                    {tag}
+               <div className="mb-4">
+                {tags.map(t => (
+                  <Link key={t} href={`/blog/tag/${encodeURIComponent(t)}`} className="inline-block bg-gray-700 text-yellow-400 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full hover:bg-gray-600">
+                    {t}
                   </Link>
                 ))}
               </div>
@@ -52,4 +71,4 @@ const BlogPage = () => {
   );
 };
 
-export default BlogPage;
+export default TagPage;
