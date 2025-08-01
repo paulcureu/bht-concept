@@ -7,7 +7,7 @@ import { notFound } from 'next/navigation';
 export async function generateStaticParams() {
   const tags = await getAllTags();
   return tags.map(tag => ({
-    tag: slugify(tag), // Generează pagini pe baza slug-ului
+    tag: slugify(tag),
   }));
 }
 
@@ -15,7 +15,6 @@ const TagPage = async ({ params: paramsPromise }: { params: Promise<{ tag: strin
   const { tag: slug } = await paramsPromise;
   
   const allTags = await getAllTags();
-  // Găsește tag-ul original care corespunde slug-ului
   const originalTag = allTags.find(t => slugify(t) === slug);
 
   if (!originalTag) {
@@ -26,11 +25,16 @@ const TagPage = async ({ params: paramsPromise }: { params: Promise<{ tag: strin
 
   return (
     <div className="max-w-5xl mx-auto">
-      <h1 className="text-4xl font-bold text-center text-yellow-400">
-        Articole în categoria: <span className="text-white">{originalTag}</span>
-      </h1>
+      <div className="text-center mb-12">
+        <h1 className="text-4xl font-bold text-yellow-400">
+          Articole în categoria: <span className="text-white">{originalTag}</span>
+        </h1>
+        <Link href="/blog" className="inline-block mt-6 bg-gray-700 text-yellow-400 font-bold py-2 px-6 rounded-lg hover:bg-gray-600 transition-colors">
+          ← Vezi Toate Articolele
+        </Link>
+      </div>
       
-      <section className="mt-12 grid gap-8 md:grid-cols-2">
+      <section className="grid gap-8 md:grid-cols-2">
         {posts.map(({ id, title, date, excerpt, image, author, tags }) => (
           <article key={id} className="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col">
             <Link href={`/blog/${id}`} className="block">

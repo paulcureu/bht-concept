@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { getSortedPostsData } from '@/lib/posts';
+import { getSortedPostsData, getAllTags } from '@/lib/posts';
 import { slugify } from '@/lib/utils';
 
 const BlogPage = async () => {
   const allPosts = await getSortedPostsData();
+  const allTags = await getAllTags();
 
   return (
     <div className="max-w-5xl mx-auto">
@@ -12,6 +13,18 @@ const BlogPage = async () => {
       <p className="mt-4 text-lg text-center text-gray-300">
         Articole, ghiduri și noutăți din domeniul electric și al energiei verzi.
       </p>
+
+      {/* Sectiunea de Tag-uri */}
+      <div className="mt-12 p-6 bg-gray-800 rounded-lg">
+        <h2 className="text-2xl font-bold text-white mb-4">Toate Categoriile</h2>
+        <div className="flex flex-wrap gap-3">
+          {allTags.map(tag => (
+            <Link key={tag} href={`/blog/tag/${slugify(tag)}`} className="inline-block bg-gray-700 text-yellow-400 text-sm font-semibold px-3 py-1.5 rounded-full hover:bg-gray-600 transition-colors">
+              {tag}
+            </Link>
+          ))}
+        </div>
+      </div>
 
       <section className="mt-12 grid gap-8 md:grid-cols-2">
         {allPosts.map(({ id, title, date, excerpt, image, author, tags }) => (
