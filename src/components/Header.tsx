@@ -18,6 +18,7 @@ const Header = () => {
           <ul className="flex space-x-6">
             <li><Link href="/servicii" className="hover:text-yellow-400">Servicii</Link></li>
             <li><Link href="/portofoliu" className="hover:text-yellow-400">Portofoliu</Link></li>
+            <li><Link href="/blog" className="hover:text-yellow-400">Blog</Link></li>
             <li><Link href="/despre" className="hover:text-yellow-400">Despre Noi</Link></li>
             <li><Link href="/contact" className="hover:text-yellow-400">Contact</Link></li>
           </ul>
@@ -39,6 +40,7 @@ const Header = () => {
           <ul className="flex flex-col items-center space-y-4 py-4">
             <li><Link href="/servicii" onClick={() => setIsMenuOpen(false)} className="hover:text-yellow-400">Servicii</Link></li>
             <li><Link href="/portofoliu" onClick={() => setIsMenuOpen(false)} className="hover:text-yellow-400">Portofoliu</Link></li>
+            <li><Link href="/blog" onClick={() => setIsMenuOpen(false)} className="hover:text-yellow-400">Blog</Link></li>
             <li><Link href="/despre" onClick={() => setIsMenuOpen(false)} className="hover:text-yellow-400">Despre Noi</Link></li>
             <li><Link href="/contact" onClick={() => setIsMenuOpen(false)} className="hover:text-yellow-400">Contact</Link></li>
           </ul>
