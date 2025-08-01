@@ -20,6 +20,7 @@ const Header = () => {
             <li><Link href="/portofoliu" className="hover:text-yellow-400">Portofoliu</Link></li>
             <li><Link href="/blog" className="hover:text-yellow-400">Blog</Link></li>
             <li><Link href="/despre" className="hover:text-yellow-400">Despre Noi</Link></li>
+            <li><Link href="/cariera" className="hover:text-yellow-400">Carieră</Link></li>
             <li><Link href="/contact" className="hover:text-yellow-400">Contact</Link></li>
           </ul>
         </nav>
@@ -42,6 +43,7 @@ const Header = () => {
             <li><Link href="/portofoliu" onClick={() => setIsMenuOpen(false)} className="hover:text-yellow-400">Portofoliu</Link></li>
             <li><Link href="/blog" onClick={() => setIsMenuOpen(false)} className="hover:text-yellow-400">Blog</Link></li>
             <li><Link href="/despre" onClick={() => setIsMenuOpen(false)} className="hover:text-yellow-400">Despre Noi</Link></li>
+            <li><Link href="/cariera" onClick={() => setIsMenuOpen(false)} className="hover:text-yellow-400">Carieră</Link></li>
             <li><Link href="/contact" onClick={() => setIsMenuOpen(false)} className="hover:text-yellow-400">Contact</Link></li>
           </ul>
         </nav>
