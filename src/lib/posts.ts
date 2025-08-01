@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
@@ -6,8 +6,7 @@ import html from 'remark-html';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
-// Define the type for a post
-export type PostData = {
+export type Post = {
   id: string;
   title: string;
   date: string;
@@ -15,34 +14,34 @@ export type PostData = {
   image: string;
   author: string;
   tags: string[];
-  contentHtml?: string;
 };
 
-export function getSortedPostsData(): Omit<PostData, 'contentHtml'>[] {
-  const fileNames = fs.readdirSync(postsDirectory);
-  const allPostsData = fileNames.map((fileName) => {
-    const id = fileName.replace(/\.md$/, '');
-    const fullPath = path.join(postsDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
-    const matterResult = matter(fileContents);
+export type PostWithContent = Post & {
+  contentHtml: string;
+};
 
-    return {
-      id,
-      ...(matterResult.data as { title: string; date: string; excerpt: string; image: string; author: string; tags: string[] }),
-    };
-  });
+async function readPost(fileName: string): Promise<Post> {
+  const id = fileName.replace(/\.md$/, '');
+  const fullPath = path.join(postsDirectory, fileName);
+  const fileContents = await fs.readFile(fullPath, 'utf8');
+  const matterResult = matter(fileContents);
+
+  return {
+    id,
+    ...(matterResult.data as { title: string; date: string; excerpt: string; image: string; author: string; tags: string[] }),
+  };
+}
+
+export async function getSortedPostsData(): Promise<Post[]> {
+  const fileNames = await fs.readdir(postsDirectory);
+  const allPostsData = await Promise.all(fileNames.map(readPost));
 
   return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-export async function getPostData(id: string): Promise<PostData> {
+export async function getPostData(id: string): Promise<PostWithContent> {
   const fullPath = path.join(postsDirectory, `${id}.md`);
-  
-  if (!fs.existsSync(fullPath)) {
-    throw new Error(`Post file not found for id: ${id} at path: ${fullPath}`);
-  }
-
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  const fileContents = await fs.readFile(fullPath, 'utf8');
   const matterResult = matter(fileContents);
 
   const processedContent = await remark().use(html).process(matterResult.content);
@@ -55,20 +54,20 @@ export async function getPostData(id: string): Promise<PostData> {
   };
 }
 
-export function getAllPostIds() {
-  const fileNames = fs.readdirSync(postsDirectory);
+export async function getAllPostIds() {
+  const fileNames = await fs.readdir(postsDirectory);
   return fileNames.map((fileName) => ({
     params: { id: fileName.replace(/\.md$/, '') },
   }));
 }
 
-export function getAllTags() {
-  const allPosts = getSortedPostsData();
+export async function getAllTags() {
+  const allPosts = await getSortedPostsData();
   const allTags = allPosts.flatMap(post => post.tags);
-  return [...new Set(allTags)]; // Return unique tags
+  return [...new Set(allTags)];
 }
 
-export function getPostsByTag(tag: string) {
-  const allPosts = getSortedPostsData();
+export async function getPostsByTag(tag: string) {
+  const allPosts = await getSortedPostsData();
   return allPosts.filter(post => post.tags.includes(tag));
 }

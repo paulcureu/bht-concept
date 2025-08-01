@@ -26,7 +26,7 @@ const ContactForm = () => {
       } else {
         setStatus('A apărut o eroare. Te rugăm să încerci din nou.');
       }
-    } catch (error) {
+    } catch {
       setStatus('A apărut o eroare. Te rugăm să încerci din nou.');
     }
   };

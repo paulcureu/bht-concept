@@ -3,23 +3,17 @@ import Image from 'next/image';
 import { getPostsByTag, getAllTags } from '@/lib/posts';
 import { notFound } from 'next/navigation';
 
-type Props = {
-  params: {
-    tag: string;
-  };
-};
-
-// Generează pagini statice pentru fiecare tag la build time
-export function generateStaticParams() {
-  const tags = getAllTags();
+export async function generateStaticParams() {
+  const tags = await getAllTags();
   return tags.map(tag => ({
     tag: encodeURIComponent(tag),
   }));
 }
 
-const TagPage = ({ params }: Props) => {
-  const tag = decodeURIComponent(params.tag);
-  const posts = getPostsByTag(tag);
+const TagPage = async ({ params: paramsPromise }: { params: Promise<{ tag: string }> }) => {
+  const { tag: encodedTag } = await paramsPromise;
+  const tag = decodeURIComponent(encodedTag);
+  const posts = await getPostsByTag(tag);
 
   if (!posts || posts.length === 0) {
     notFound();

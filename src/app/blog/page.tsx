@@ -2,8 +2,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getSortedPostsData } from '@/lib/posts';
 
-const BlogPage = () => {
-  const allPosts = getSortedPostsData();
+const BlogPage = async () => {
+  const allPosts = await getSortedPostsData();
 
   return (
     <div className="max-w-5xl mx-auto">
@@ -25,10 +25,10 @@ const BlogPage = () => {
               />
             </Link>
             <div className="p-6 flex-grow flex flex-col">
-              <div className="mb-4">
-                {tags.map(tag => (
-                  <Link key={tag} href={`/blog/tag/${encodeURIComponent(tag)}`} className="inline-block bg-gray-700 text-yellow-400 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full hover:bg-gray-600">
-                    {tag}
+               <div className="mb-4">
+                {tags.map(t => (
+                  <Link key={t} href={`/blog/tag/${encodeURIComponent(t)}`} className="inline-block bg-gray-700 text-yellow-400 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full hover:bg-gray-600">
+                    {t}
                   </Link>
                 ))}
               </div>
