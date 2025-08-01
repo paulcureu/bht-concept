@@ -24,8 +24,8 @@ export default function Home() {
   return (
     <>
       {/* Sectiunea Hero */}
-      <section className="text-center flex flex-col items-center justify-center min-h-[60vh]">
-        <h1 className="text-4xl font-bold text-yellow-400 sm:text-5xl md:text-6xl max-w-3xl">
+      <section className="text-center flex flex-col items-center justify-center min-h-[60vh] px-4">
+        <h1 className="text-3xl font-bold text-yellow-400 sm:text-5xl md:text-6xl max-w-3xl">
           B.H.T. SMART CONCEPT
         </h1>
         <p className="mt-4 text-lg text-gray-300 sm:text-xl md:text-2xl">
@@ -42,8 +42,8 @@ export default function Home() {
       </section>
 
       {/* Sectiunea "De ce sa ne alegeti?" */}
-      <section className="py-20 bg-gray-800 rounded-lg">
-        <div className="container mx-auto text-center">
+      <section className="py-16 sm:py-20 bg-gray-800 rounded-lg">
+        <div className="container mx-auto text-center px-4">
           <h2 className="text-3xl font-bold text-white">De ce să ne alegeți?</h2>
           <div className="mt-12 grid md:grid-cols-3 gap-12">
             <div className="flex flex-col items-center">
@@ -66,7 +66,7 @@ export default function Home() {
       </section>
 
       {/* Sectiunea Call to Action Servicii */}
-      <section className="text-center py-20">
+      <section className="text-center py-16 sm:py-20 px-4">
         <h2 className="text-3xl font-bold">Explorați Serviciile Noastre</h2>
         <p className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
           De la instalații electrice clasice la sisteme fotovoltaice și case inteligente, avem soluția potrivită pentru dumneavoastră.
